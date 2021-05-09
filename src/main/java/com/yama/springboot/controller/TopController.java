@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yama.springboot.DevProjectApplication;
+
 /**
  * トップのcontroller
  * @author yama
@@ -14,8 +16,7 @@ public class TopController {
 
 	@RequestMapping("/top")
 	public ModelAndView init(ModelAndView mav) {
-		// コメント外すとエラーになります
-//		System.out.println(topicsDataList.getTitle());
+		System.out.println(DevProjectApplication.topicsDataList.get(0).getTitle());
 
 		mav.setViewName("top");
 		return mav;
