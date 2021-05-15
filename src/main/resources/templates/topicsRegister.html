@@ -3,37 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <title>TOPICS設定</title>
+<script>
+
+const initEventBtn = function(){
+
+	const _fm = document.forms["form"];
+	const _id = document.getElementById("js-topics_id").value;
+
+	const _btns = {
+			"js-btn-register" : {
+				method: "post",
+				path: "/topicsRegister/new"
+			},
+			"js-btn-update" : {
+				method: "post",
+				path: "/topicsRegister/" + _id + "/edit"
+			},
+			"js-btn-delete" : {
+				method: "post",
+				path: "/topicsRegister/" + _id + "/delete"
+			},
+			"js-btn-back" : {
+				method: "post",
+				path: "/top"
+			}
+	}
+
+	// サーバー通信するボタンのクリックイベントを定義していく
+	for(let id of Object.keys(_btns)){
+		let btn = document.getElementById(id);
+		btn.addEventListener("click", function(){
+			_fm.method = _btns[id].method;
+			_fm.action = _btns[id].path;
+			_fm.submit();
+		}, false);
+	}
+}
+
+// DOMを読み込んだらOKな処理
+window.addEventListener("DOMContentLoaded", function(){
+	initEventBtn();
+}, false);
+
+</script>
 </head>
 <body>
 	<h1>TOPICS設定</h1>
 	<main>
-		<section class="input_form container">
-			<input type="hidden" id="js-topics_id"/>
-			<div>
-				<label>タイトル</label>
-				<input type="text" name="title" />
-			</div>
-			<div>
-				<label>表示開始日時</label>
-				<input type="text" name="displayStartTime"/>
-			</div>
-			<div>
-				<label>表示終了日時</label>
-				<input type="text" name="displayEndTime"/>
-			</div>
-			<div>
-				<label>配布先グループ</label>
-				<input type="text" name="sendTo"/>
-			</div>
-			<div>
-				<label>配布元グループ</label>
-				<input type="text" name="sendFrom"/>
-			</div>
-			<button type="button" >登録</button>
-			<button type="button" >更新</button>
-			<button type="button" >削除</button>
-			<button type="button" >戻る</button>
-		</section>
+		<div>
+			<th:block th:if=!${#strings.isEmpty(msg)}>
+				<p th:text="${msg}"></p>
+			</th:block>
+		</div>
+		<form name="form" th:object="${form}">
+			<section class="input_form container">
+				<input type="hidden" id="js-topics_id" th:field="*{id}"/>
+				<div>
+					<label>タイトル</label>
+					<input type="text" th:field="*{title}" />
+				</div>
+				<div>
+					<label>表示開始日時</label>
+					<input type="date" th:field="*{displayStartTime}" />
+				</div>
+				<div>
+					<label>表示終了日時</label>
+					<input type="date" th:field="*{displayEndTime}" />
+				</div>
+				<div>
+					<label>配布先グループ</label>
+					<input type="text" th:field="*{sendTo}" />
+				</div>
+				<div>
+					<label>配布元グループ</label>
+					<input type="text" th:field="*{sendFrom}" />
+				</div>
+				<button type="button"  id="js-btn-register" class="btn-register">登録</button>
+				<button type="button"  id="js-btn-update" class="btn-update">更新</button>
+				<button type="button"  id="js-btn-delete" class="btn-delete">削除</button>
+				<button type="button"  id="js-btn-back" class="btn-back">戻る</button>
+			</section>
+		</form>
 	</main>
 </body>
 </html>

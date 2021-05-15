@@ -1,5 +1,8 @@
 package com.yama.springboot.form;
 
+import java.io.Serializable;
+import java.sql.Timestamp;
+
 import lombok.Data;
 
 /**
@@ -8,15 +11,15 @@ import lombok.Data;
  *@version 1.0
  */
 @Data
-public class TopicsRegisterForm {
+public class TopicsRegisterForm implements Serializable {
 	// ID
 	private int id;
 	// タイトル
 	private String title;
 	// 表示開始日時
-	private String displayStartTime;
+	private Timestamp displayStartTime;
 	// 表示終了日時
-	private String displayEndTime;
+	private Timestamp displayEndTime;
 	// 配布先グループ
 	private String sendTo;
 	// 配布元グループ
