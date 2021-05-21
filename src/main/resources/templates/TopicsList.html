@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>topicsList page</title>
+</head>
+<body>
+    <h1>topicsList page</h1>
+    <table class="TopicsList" border="solid">
+        <tr>
+            <th>ID</th>
+            <th>配布先グループ</th>
+            <th>配布元グループ</th>
+            <th>タイトル</th>
+            <th>表示開始日時</th>
+            <th>表示終了日時</th>
+        </tr>
+        <tr th:each="topics : ${topicsList}">
+            <td th:text="${topics.id}"></td>
+            <td th:text="${topics.sendTo}"></td>
+            <td th:text="${topics.sendFrom}"></td>
+            <td th:text="${topics.title}"></td>
+            <td th:text="${topics.displayStartTime}"></td>
+            <td th:text="${topics.displayEndTime}"></td>
+        </tr>
+    </table>
+    <div>
+        <a href="/top">topへ戻る</a>
+    </div>
+
+</body>
+</html>
