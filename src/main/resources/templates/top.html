@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>top page</title>
 </head>
 <body>
-	<h1>top page</h1>
-	<p class="msg" th:text="${msg}"></p>
+	<h1>top page</h1>topicsList
+	<h3>TOPICS</h3>
+	<table border="solid">
+		<tr>
+			<th>タイトル</th>
+			<th>表示開始日時</th>
+		</tr>
+        <tr th:each="topics : ${topicsList}">
+            <td th:text="${topics.title}"></td>
+            <td th:text="${topics.displayStartTime}"></td>
+		</tr>
+	</table>
+	<a href="/TopicsList">TOPICS一覧へ</a>
+	<a href="/topicsRegister/new">TOPICS設定へ</a>
 </body>
 </html>
