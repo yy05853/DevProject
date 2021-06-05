@@ -1,6 +1,5 @@
 package com.yama.springboot.controller;
 
-import java.util.List;
 import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Controller;
@@ -11,17 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.yama.springboot.DevProjectApplication;
-import com.yama.springboot.entity.TopicsData;
 import com.yama.springboot.form.TopicsRegisterForm;
 import com.yama.springboot.service.TopicsRegisterService;
 
 import lombok.RequiredArgsConstructor;
 
 /**
+ * <pre>
  * トピックス設定画面のコントローラー
+ * </pre>
  * @author tatta
- *@version 1.0
+ * @version 1.0
  */
 @Controller
 @RequiredArgsConstructor
@@ -29,9 +28,6 @@ public class TopicsRegisterController {
 
 	// 画面名
 	final private String VIEW_NAME = "topicsRegister";
-
-	// 参照用
-	final private List<TopicsData> dataList = DevProjectApplication.topicsDataList;
 
 	// メッセージ定義用のこんすと
 	public enum TopicsRegisterMsgConst {

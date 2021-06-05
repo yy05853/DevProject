@@ -120,10 +120,10 @@ public class TopicsRegisterService {
 			int index = indexOf(data.getId());
 			if(index == -1) {
 				DevProjectApplication.topicsDataList.add(data);
-				System.out.println("登録されたよ：" + data.getId());
+//				System.out.println("登録されたよ：" + data.getId());
 			}else {
 				DevProjectApplication.topicsDataList.set(index, data);
-				System.out.println("更新されたよ：" + data.getId());
+//				System.out.println("更新されたよ：" + data.getId());
 			}
 
 		}catch(Exception e) {
@@ -156,7 +156,7 @@ public class TopicsRegisterService {
 	private TopicsRegisterForm createFrom(TopicsData data) {
 		TopicsRegisterForm form = new TopicsRegisterForm();
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 		form.setId(data.getId());
 		form.setTitle(data.getTitle());
@@ -170,7 +170,7 @@ public class TopicsRegisterService {
 	private TopicsData createFrom(TopicsRegisterForm form) {
 		TopicsData data = new TopicsData();
 
-		SimpleDateFormat sdf  = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat sdf  = new SimpleDateFormat("yyyy-MM-dd,hh:mm");
 
 		data.setId(form.getId());
 		data.setTitle(form.getTitle());
