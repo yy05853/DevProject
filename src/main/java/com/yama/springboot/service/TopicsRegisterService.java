@@ -1,5 +1,8 @@
 package com.yama.springboot.service;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -152,10 +155,13 @@ public class TopicsRegisterService {
 
 	private TopicsRegisterForm createFrom(TopicsData data) {
 		TopicsRegisterForm form = new TopicsRegisterForm();
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+
 		form.setId(data.getId());
 		form.setTitle(data.getTitle());
-		form.setDisplayStartTime(data.getDisplayStartTime());
-		form.setDisplayEndTime(data.getDisplayEndTime());
+		form.setDisplayStartTime(sdf.format(data.getDisplayStartTime()));
+		form.setDisplayEndTime(sdf.format(data.getDisplayEndTime()));
 		form.setSendTo(data.getSendTo());
 		form.setSendFrom(data.getSendFrom());
 		return form;
@@ -163,10 +169,18 @@ public class TopicsRegisterService {
 
 	private TopicsData createFrom(TopicsRegisterForm form) {
 		TopicsData data = new TopicsData();
+
+		SimpleDateFormat sdf  = new SimpleDateFormat("yyyy/MM/dd");
+
 		data.setId(form.getId());
 		data.setTitle(form.getTitle());
-		data.setDisplayStartTime(form.getDisplayStartTime());
-		data.setDisplayEndTime(form.getDisplayEndTime());
+		try {
+			data.setDisplayStartTime(new Timestamp(sdf.parse(form.getDisplayStartTime()).getTime()));
+			data.setDisplayEndTime(new Timestamp(sdf.parse(form.getDisplayEndTime()).getTime()));
+		} catch(ParseException e) {
+			// 何もしない
+			e.printStackTrace();
+		}
 		data.setSendTo(form.getSendTo());
 		data.setSendFrom(form.getSendFrom());
 		return data;
