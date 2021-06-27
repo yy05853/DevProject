@@ -19,7 +19,8 @@
             <td th:text="${topics.id}"></td>
             <td th:text="${topics.sendTo}"></td>
             <td th:text="${topics.sendFrom}"></td>
-            <td th:text="${topics.title}"></td>
+<!--             <td th:text="${topics.title}"><a th:href="@{${url}}"></a></td> -->
+            <td><a th:href="@{/topicsRegister/{id}/edit(id=${topics.id})}"><span th:text="${topics.title}">link</span></a></td>
             <td th:text="${topics.displayStartTime}"></td>
             <td th:text="${topics.displayEndTime}"></td>
         </tr>
