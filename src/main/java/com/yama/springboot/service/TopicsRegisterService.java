@@ -1,7 +1,5 @@
 package com.yama.springboot.service;
 
-import java.sql.Timestamp;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.UUID;
@@ -156,13 +154,16 @@ public class TopicsRegisterService {
 	private TopicsRegisterForm createFrom(TopicsData data) {
 		TopicsRegisterForm form = new TopicsRegisterForm();
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdfTime = new SimpleDateFormat("hh:mm");
 
 		form.setId(data.getId());
 		form.setTitle(data.getTitle());
-		form.setDisplayStartTime(sdf.format(data.getDisplayStartTime()));
+		form.setDisplayStartDate(sdfDate.format(data.getDisplayStartTime()));
+		form.setDisplayStartTime(sdfTime.format(data.getDisplayStartTime()));
 		if(data.getDisplayEndTime() != null) {
-			form.setDisplayEndTime(sdf.format(data.getDisplayEndTime()));
+			form.setDisplayEndDate(sdfDate.format(data.getDisplayEndTime()));
+			form.setDisplayEndTime(sdfTime.format(data.getDisplayEndTime()));
 		}
 //		form.setDisplayEndTime(sdf.format(data.getDisplayEndTime()));
 		form.setSendTo(data.getSendTo());
@@ -177,13 +178,13 @@ public class TopicsRegisterService {
 
 		data.setId(form.getId());
 		data.setTitle(form.getTitle());
-		try {
-			data.setDisplayStartTime(new Timestamp(sdf.parse(form.getDisplayStartTime()).getTime()));
-			data.setDisplayEndTime(new Timestamp(sdf.parse(form.getDisplayEndTime()).getTime()));
-		} catch(ParseException e) {
-			// 何もしない
-			e.printStackTrace();
-		}
+//		try {
+////			data.setDisplayStartTime(new Timestamp(sdf.parse(form.getDisplayStartDate()).getTime()) + "," + sdf.parse(form.getDisplayStartTime()).getTime());
+////			data.setDisplayEndTime(new Timestamp(sdf.parse(form.getDisplayEndDate()).getTime() + "," + form.getDisplayEndTime()).getTime()));
+//		} catch(ParseException e) {
+//			// 何もしない
+//			e.printStackTrace();
+//		}
 		data.setSendTo(form.getSendTo());
 		data.setSendFrom(form.getSendFrom());
 		return data;
