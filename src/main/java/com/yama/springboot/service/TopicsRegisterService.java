@@ -161,7 +161,10 @@ public class TopicsRegisterService {
 		form.setId(data.getId());
 		form.setTitle(data.getTitle());
 		form.setDisplayStartTime(sdf.format(data.getDisplayStartTime()));
-		form.setDisplayEndTime(sdf.format(data.getDisplayEndTime()));
+		if(data.getDisplayEndTime() != null) {
+			form.setDisplayEndTime(sdf.format(data.getDisplayEndTime()));
+		}
+//		form.setDisplayEndTime(sdf.format(data.getDisplayEndTime()));
 		form.setSendTo(data.getSendTo());
 		form.setSendFrom(data.getSendFrom());
 		return form;
