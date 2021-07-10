@@ -1,5 +1,6 @@
 package com.yama.springboot.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,5 +27,9 @@ public class TopService {
 		return DevProjectApplication.topicsDataList.stream()
 				.filter(topics -> groupName.equals(topics.getSendTo()))
 				.collect(Collectors.toList());
+	}
+	public List<TopicsData> testTrue(String groupName) {
+		List<TopicsData> datalist = new ArrayList<>();
+		return datalist;
 	}
 }
