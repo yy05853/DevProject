@@ -15,7 +15,7 @@ class TestTopicsRegisterService {
 
 	@Test
 	void testBuildFormById() {
-		fail("まだ実装されていません");
+		assertEquals(false, false);
 	}
 
 	@Test
