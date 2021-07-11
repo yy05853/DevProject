@@ -24,7 +24,7 @@ public class DevProjectApplication {
 		// 1つ目のトピックスデータを作成する
 		TopicsData topicsData = new TopicsData();
 		topicsData.setId(1);
-		topicsData.setSendTo("グループ2");
+		topicsData.setSendTo("グループ1");
 		topicsData.setSendFrom("グループ1");
 		topicsData.setTitle("コロナによる全面リモートワークのお知らせ");
 		try {
