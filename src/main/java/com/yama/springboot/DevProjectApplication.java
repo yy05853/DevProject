@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -36,6 +37,12 @@ public class DevProjectApplication {
 		topicsDataList.add(topicsData);
 
 		SpringApplication.run(DevProjectApplication.class, args);
+	}
+
+	public List<TopicsData> findByName(String groupName) {
+		return DevProjectApplication.topicsDataList.stream()
+				.filter(topics -> groupName.equals(topics.getSendTo()))
+				.collect(Collectors.toList());
 	}
 
 }
