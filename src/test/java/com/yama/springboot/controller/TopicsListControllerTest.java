@@ -45,7 +45,7 @@ class TopicsListControllerTest {
 
 				// 1つ目のトピックスデータを作成する
 				TopicsData topicsData = new TopicsData();
-				topicsData.setId(1);
+				topicsData.setId(2);
 				topicsData.setSendTo("グループ1");
 				topicsData.setSendFrom("グループ1");
 				topicsData.setTitle("コロナによる全面リモートワークのお知らせ");
@@ -60,12 +60,12 @@ class TopicsListControllerTest {
 			}
 		};
 		TopicsListController topicsListController = new TopicsListController(topicsDataRepository);
+		mockMvc = MockMvcBuilders.standaloneSetup(topicsListController).build();
 
 		mockMvc.perform(get("/TopicsList"))
         .andExpect(status().isOk())
         .andExpect(view().name("TopicsList.html"))
         .andExpect(model().attribute("topicsList", topicsDataRepository.getAllTopics()));
-		// 上記テストは失敗します。
 
 		//assertEquals(1,topicsListController.TopicsList().size());
 	}
