@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 public class TopicsRegisterService {
 
 	private final TopicsDataRepository topicsDataRepository;
-	
+
 	/**
 	 *  FIXME: サービスクラスにプレゼンテーション層のオブジェクトが混じってるのはよくなさそう
 	 *  依存の方向が、form ← serviceになってしまう
@@ -125,7 +125,8 @@ public class TopicsRegisterService {
 		try {
 			int index = indexOf(data.getId());
 			if(index == -1) {
-				DevProjectApplication.topicsDataList.add(data);
+				topicsDataRepository.addTopics(data);
+				//				DevProjectApplication.topicsDataList.add(data);
 //				System.out.println("登録されたよ：" + data.getId());
 			}else {
 				DevProjectApplication.topicsDataList.set(index, data);

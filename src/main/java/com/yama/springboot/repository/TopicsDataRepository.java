@@ -14,4 +14,10 @@ public class TopicsDataRepository {
 		return DevProjectApplication.topicsDataList;
 	}
 
+	public boolean addTopics(TopicsData topicsData) {
+		DevProjectApplication.topicsDataList.add(topicsData);
+
+		return true;
+	}
+
 }
