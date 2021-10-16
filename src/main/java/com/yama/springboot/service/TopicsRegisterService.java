@@ -12,10 +12,16 @@ import org.springframework.stereotype.Service;
 import com.yama.springboot.DevProjectApplication;
 import com.yama.springboot.entity.TopicsData;
 import com.yama.springboot.form.TopicsRegisterForm;
+import com.yama.springboot.repository.TopicsDataRepository;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Service
 public class TopicsRegisterService {
 
+	private final TopicsDataRepository topicsDataRepository;
+	
 	/**
 	 *  FIXME: サービスクラスにプレゼンテーション層のオブジェクトが混じってるのはよくなさそう
 	 *  依存の方向が、form ← serviceになってしまう
@@ -99,7 +105,7 @@ public class TopicsRegisterService {
 	 * @return
 	 */
 	private int indexOf(int topicsId) {
-		List<TopicsData> dataList = DevProjectApplication.topicsDataList;
+		List<TopicsData> dataList = topicsDataRepository.getAllTopics();
 		// トピックスデータのリストから、引数のIDに該当するものを探し出す
 		for(int i = 0, ilen = dataList.size(); i < ilen; i++) {
 			if(dataList.get(i).getId() == topicsId){
